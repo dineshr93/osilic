@@ -1,9 +1,47 @@
 #!/bin/bash
 
+# ----------------------------
+# Check required environment variables
+# ----------------------------
+missing_vars=()
+
+if [ -z "$DETECT_VERSION" ]; then
+    missing_vars+=("DETECT_VERSION")
+fi
+
+if [ -z "$BLACKDUCK_API_TOKEN" ]; then
+    missing_vars+=("BLACKDUCK_API_TOKEN")
+fi
+
+if [ -z "$BLACKDUCK_URL" ]; then
+    missing_vars+=("BLACKDUCK_URL")
+fi
+
+if [ ${#missing_vars[@]} -ne 0 ]; then
+    echo "The following required environment variables are not set:"
+    for var in "${missing_vars[@]}"; do
+        echo "  export $var=<value>"
+    done
+    echo "Please set them before running the script."
+    exit 1
+fi
+
+# ----------------------------
+# Export fallback test values (optional, only if you want to use BDURL_TEST/BDAPI_TEST)
+# ----------------------------
+export BLACKDUCK_URL="${BLACKDUCK_URL:-$BDURL_TEST}"
+export BLACKDUCK_API_TOKEN="${BLACKDUCK_API_TOKEN:-$BDAPI_TEST}"
+
+# ----------------------------
+# Documentation
+# ----------------------------
 echo "************************************** HELP *****************************************"
 echo "https://documentation.blackduck.com/bundle/detect/page/properties/all-properties.html"
 echo "*************************************************************************************"
 
+# ----------------------------
+# Generate application.yml
+# ----------------------------
 cat <<EOF > application.yml
 detect.project.name: $(basename "$PWD")
 detect.project.version.name: $(git branch --show-current)_$(git rev-parse --short HEAD)
@@ -25,8 +63,7 @@ detect.excluded.detector.types: "GIT,PIP"
 detect.uv.dependency.groups.excluded: dev
 EOF
 
-export BLACKDUCK_URL="${BDURL_TEST}"
-export BLACKDUCK_API_TOKEN="${BDAPI_TEST}"
-
-
-bash <(curl -s https://detect.blackduck.com/detect${DETECT_VERSION}.sh)
+# ----------------------------
+# Run Black Duck Detect
+# ----------------------------
+bash <(curl -s "https://detect.blackduck.com/detect${DETECT_VERSION}.sh")

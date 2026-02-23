@@ -1,4 +1,6 @@
-- bc71693 Update pyproject.toml (Dinesh Ravi, 2025-07-14)
+- 03018d5 improved bd env handling (Dinesh, 2026-02-23)
+- 3db042d added blackduck script and uv.lock file (Dinesh, 2026-02-23)
+- a6d9db1 Update pyproject.toml (Dinesh Ravi, 2025-07-14)
 - b8c1af0 Update README.md (Dinesh Ravi, 2025-07-14)
 - 51d5ef2 Update pyproject.toml (Dinesh Ravi, 2025-07-14)
 - 82770a0 upate change log (Dinesh, 2025-07-14)
