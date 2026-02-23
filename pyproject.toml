@@ -13,3 +13,5 @@ osilic = "osilic:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv]

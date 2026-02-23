@@ -8,6 +8,7 @@ wheels/
 *.egg-info
 o.txt
 license.json
+application.yml
 
 # Virtual environments
 .venv

@@ -1,3 +1,7 @@
+- bc71693 Update pyproject.toml (Dinesh Ravi, 2025-07-14)
+- b8c1af0 Update README.md (Dinesh Ravi, 2025-07-14)
+- 51d5ef2 Update pyproject.toml (Dinesh Ravi, 2025-07-14)
+- 82770a0 upate change log (Dinesh, 2025-07-14)
 - f2c4cbf Update README.md (Dinesh Ravi, 2025-07-14)
 - 2bff2ec add new screenshots (Dinesh Ravi, 2025-07-14)
 - ca272df fix stewards no attribute value (Dinesh Ravi, 2025-07-14)
